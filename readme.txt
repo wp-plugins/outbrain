@@ -1,9 +1,3 @@
-/*
-see this plugin:
-http://wordpress.org/extend/plugins/podpress/
-delete this lines at end
-*/
-
 === outbrain ===
 Tags: widget, plugin, stats, statistics, outbrain
 Contributors: outbrain
