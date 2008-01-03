@@ -75,9 +75,6 @@ if (isset($_POST['outbrain_send'])){
 				}
 				?>
 		</fieldset>
-		<div id="getWidget" style="text-align:center;width:500px;margin:auto;border:1px solid red;padding:10px;">
-			<a href="widgets.php">get outbrain linkroll widget - click here and add the widget</a>
-		</div>
 		<p class="submit options" style="text-align:left;">
 			<input type="submit" name="Submit" value="<?php _e('Update Options »') ?>" />
 		</p>

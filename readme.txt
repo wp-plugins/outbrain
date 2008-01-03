@@ -2,9 +2,9 @@
 Tags: widget, plugin, stats, statistics, outbrain
 Contributors: outbrain
 Donate link: 
-Requires at least: 
+Requires at least:
 Tested up to: 2.3
-Stable Tag: 1.0.0.0
+Stable Tag: 1.1
 
 <one line Description>
 
@@ -42,7 +42,3 @@ Stable Tag: 1.0.0.0
 <send me screenshots to the mail>
 1. <first screenshot description>
 2. <second screenshot description>
-3. <3rd screenshot description>
-4. <4th screenshot description>
-5. <5th screenshot description>
-<can be more then 5>

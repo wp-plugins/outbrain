@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: outbrain
-Plugin URI: http://wordpress.org/extend/plugins/outbrain/
+Plugin Name: Outbrain
+Plugin URI: http://www.outbrain.com
 Description: A WordPress plugin to deal with the <a href="http://www.outbrain.com">Outbrain</a> blog posting rating system.
-Author: outbrain
-Version: 1.0.0.0
-Author URI: http://www.outbrain.com
+Author: outbrain (first version by Aaron Brazell)
+Version: 1.1
+Author URI: http://www.outbrain.com / http://technosailor.com/
 */
 
 // consts
@@ -15,7 +15,7 @@ $outbrain_end_comment = "//OBEND:do_NOT_remove_this_comment";
 
 // add admin options page
 function outbrain_add_options_page(){
-	add_options_page('Outbrain Options', 'Outbrain Options', 8, 'outbrain/options.php', 'outbrain_admin_script');
+	add_options_page('Outbrain options', 'Outbrain', 9, 'outbrain/options.php');
 }
 
 // display the plugin
@@ -42,7 +42,6 @@ function outbrain_display ($content)
 	{
 		$content .= '<SCRIPT LANGUAGE=\'JavaScript\'>
 		' . $outbrain_start_comment . '
-		<!--
 		var OutbrainPermaLink="' . get_permalink( $post_ID ) . '";
 		var OB_demoMode = false;
 		if(typeof(OB_Script)!=\'undefined\'){
@@ -50,9 +49,8 @@ function outbrain_display ($content)
 		}else{
 			var OB_Script = true;
 			var OB_langJS ="' . get_option("outbrain_lang") . '";
-			document.write ("<script src=\'http://widgets.outbrain.com/OutbrainRater.js\' type=\'text/javascript\'><\/script>"); 
+			document.write ("<script src=\'http://widgets.outbrain.com/OutbrainRater.js\' type=\'text/javascript\'></"+"script>"); 
 		}
-		//-->
 		' . $outbrain_end_comment . '
 		</SCRIPT>
 		';
@@ -174,108 +172,6 @@ function outbrain_admin_script(){
 <?php
 }
 
-//--------------------------------------------------------------------------------------------------------
-//	linkroll widget
-//--------------------------------------------------------------------------------------------------------
-$outbrain_widget_dbdatafieldname = 'outbrain_linkroll_data';
-
-function outbrain_linkroll_widget_control(){
-	global $outbrain_widget_dbdatafieldname;
-	$curr_options = $new_options = get_option($outbrain_widget_dbdatafieldname);
-	
-	if ( $_POST["outbrain_widget_sent"] ) {
-		$new_options['title'] = trim(strip_tags(stripslashes($_POST["outbrain_widget_title"])));
-		$new_options['postsCount'] = $_POST["outbrain_widget_postsCount"];
-		if (!is_numeric($new_options['postsCount'])){
-			$new_options['postsCount'] = $curr_options['postsCount'];
-		}
-	}
-	
-	if ( $curr_options != $new_options ) {
-		$curr_options = $new_options;
-		update_option($outbrain_widget_dbdatafieldname, $curr_options);
-	}
-	?>
-		<input type="hidden" name="outbrain_widget_sent" value="1" />
-		<div style="width:100%;margin-bottom:15px;">
-			<label name="outbrain_widget_title">title</label>
-			<div style="margin-left:15px;">
-				<input type="text" name="outbrain_widget_title"	value="<?php	echo $curr_options['title'];	?>" />
-			</div>
-		</div>
-		<div style="width:100%;margin-bottom:15px;">
-			<label name="outbrain_widget_postsCount">how many posts to display</label>
-			<div style="margin-left:15px;">
-				<select name="outbrain_widget_postsCount">
-					<?php
-						for ($i=1;$i<=10;$i++){
-							if ($curr_options['postsCount'] == $i){
-								echo "<option value='$i' selected='selected'>$i</option>";
-							} else {
-								echo "<option value='$i'>$i</option>";
-							}
-						}
-					?>
-				</select>
-				
-				<!-- input type="text" name="outbrain_widget_postsCount" value="<?php	echo $curr_options['postsCount'];	?>" / -->
-			</div>
-		</div>
-	<?php
-}
-
-function outbrain_linkroll_widget($args) {
-
-	global $outbrain_widget_dbdatafieldname;
-	$options = get_option($outbrain_widget_dbdatafieldname);
-	$title = $options['title'];
-	$count = $options['postsCount'];
-	
-	// Check for the required API functions
-	if ( !function_exists('register_sidebar_widget') || !function_exists('register_widget_control') ) return;
-	
-    extract($args);
-	
-	$text .= '';
-	
-	$text	.=	$before_widget
-			.	$before_title
-			.	$title
-			.	$after_title
-			.	'<script type="text/javascript">'
-			.	"\r\n"
-			.	'var OB_hideTitle = true; // hide the widget\'s title from js. we have it from wordpress'
-			.	"\r\n";
-
-	if (is_numeric($count)){
-	$text	.=	''
-			.	'var OB_itemsCount =' . $count . ';'
-			.	"\r\n";
-	}
-
-	$text	.=	''
-			.	'var OB_langJS ="' . get_option("outbrain_lang") . '";'
-			.	"\r\n"
-			.	'</script>'
-			.	'<script type="text/javascript" src="http://www.outbrain.com/plugins/widgets/linkroll.V2/outbrainLinkroll.js"></script>'
-			.	$after_widget;
-
-	echo $text;
-}
-
-function outbrain_linkroll_widget_init(){
-	global $outbrain_widget_dbdatafieldname;
-	$defaults = array();
-	$defaults['title'] = 'Most popular posts';
-	$defaults['postsCount'] = 3;
-	
-	add_option($outbrain_widget_dbdatafieldname, $defaults); 
-
-	register_sidebar_widget('outbrain linkroll','outbrain_linkroll_widget');
-	register_widget_control('outbrain linkroll', 'outbrain_linkroll_widget_control', 250, 150);
-}
-
-add_action('plugins_loaded', 'outbrain_linkroll_widget_init');
 // add filters 
 add_filter('the_content', 'outbrain_display');
 add_filter('the_excerpt', 'outbrain_display_excerpt');
