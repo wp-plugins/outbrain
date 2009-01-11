@@ -5,12 +5,12 @@ delete this lines at end
 */
 
 === outbrain ===
-Tags: widget, plugin, stats, statistics, outbrain, most popular, MP  
+Tags: widget, plugin, stats, statistics, outbrain
 Contributors: outbrain
 Donate link: 
 Requires at least: 
-Tested up to: 2.7
-Stable Tag: 3.7.8.0
+Tested up to: 2.3
+Stable Tag: 1.0.0.0
 
 <one line Description>
 
