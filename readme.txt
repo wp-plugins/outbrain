@@ -10,7 +10,7 @@ Contributors: outbrain
 Donate link: 
 Requires at least: 
 Tested up to: 2.7
-Stable Tag: 3.7.8.0
+Stable Tag: 3.7.8.1
 
 <one line Description>
 

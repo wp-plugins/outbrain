@@ -4,7 +4,7 @@ Plugin Name: outbrain
 Plugin URI: http://wordpress.org/extend/plugins/outbrain/
 Description: A WordPress plugin to deal with the <a href="http://www.outbrain.com">Outbrain</a> blog posting rating system.
 Author: outbrain
-Version: 3.7.8.0
+Version: 3.7.8.1
 Author URI: http://www.outbrain.com
 */
 
@@ -27,7 +27,7 @@ if ($userType == "Partners"){
 }
 
 
-$outbrain_plugin_version = "3.7.8.0_". $userType;
+$outbrain_plugin_version = "3.7.8.1_". $userType;
 
 
 // consts
