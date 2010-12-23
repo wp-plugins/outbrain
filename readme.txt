@@ -1,11 +1,8 @@
 === outbrain ===
 Tags: widget, plugin, stats, statistics, outbrain, traffic, ratings, images, thumbnails, recommendations
 Contributors: outbrain
-Donate link: 
-Requires at least: 
 Tested up to: 3.0.3
 Stable Tag: 7.0.0.0
-
 
 Increase traffic to your best posts by adding Outbrain's related links plugin to your blog. 
 
@@ -20,7 +17,6 @@ The plugin is completely free and takes about 60 seconds to install.
 
 == Installation ==
 
-
 1. Unzip the file you downloaded into your /wp-content/ directory
 
 2. In your WordPress admin, click on "Plugins".
@@ -31,8 +27,3 @@ The plugin is completely free and takes about 60 seconds to install.
 
 Register with Outbrain (for free) and get access to reports and advanced setting: https://www.outbrain.com/register
 
-
-== Frequently Asked Questions ==
-
-
-== Screenshots ==
